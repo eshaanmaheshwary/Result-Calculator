@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="Styles/JS1.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="JS/jquery-1.8.2.min.js"></script>
+    <title>Result Calculator</title>
+    <script>
+        $(document).ready(function () {
+            $("#1").click(function () {
+                if ($("#hdnJasJava").val() == "0" || $("#hdnJasHtml").val() == "0" || $("#hdnJasCSS").val() == "0") {
+                    alert("Please fill the Required Details!");
+                    return;
+                }
+                //alert();
+                total = parseFloat($("#txtJava").val()) + parseFloat($("#txtHtml").val()) + parseFloat($("#txtCss").val());
+                total = total.toFixed(3);
+                $("#txtTotal").val(total);
+                $("#2").prop("disabled", false);
+            });
+            //--------------------
+            $("#2").click(function () {
+                per = (total / 300) * 100; //Conditional Global Variables
+                per = per.toFixed(3);
+                $("#txtPer").val(per + "%");
+                $("#3").prop("disabled", false);
+            });
+            //----------------------
+            $("#3").click(function () {
+                if (per >= 33.3 && per < 50) {
+                    $("#txtResult").val("PASS");
+                    $("#q").val("C");
+                }
+                else if (per > 50 && per < 60) {
+                    $("#txtResult").val("PASS");
+                    $("#q").val("C+");
+                }
+                else if (per > 60 && per < 70) {
+                    $("#txtResult").val("PASS");
+                    $("#q").val("B");
+                }
+                else if (per > 70 && per < 80) {
+                    $("#txtResult").val("PASS");
+                    $("#q").val("B+");
+                }
+                else if (per > 80 && per < 90) {
+                    $("#txtResult").val("PASS");
+                    $("#q").val("A");
+                }
+                else if (per > 90 && per <= 100) {
+                    $("#txtResult").val("PASS");
+                    $("#q").val("A+");
+                }
+                else {
+                    $("#txtResult").val("FAIL");
+                    $("#q").val("E");
+                }
+            });
+            //------------------------
+            $("#txtJava, #hdnJasJava").blur(function () {
+                var vals = $("#txtJava").val();
+                if (isNaN(vals) || vals > 100 || vals == "") {
+                    $("#txtJava").css({ "border": '2px solid red', "color": 'red' });
+                    $("#txtJava").val("Incorrect Input - Check Again!");
+                    $("#hdnJasJava").val("0");
+                }
+                else {
+                    $("#txtJava").css({ "border": '2px solid green', "color": 'Green' });
+                    $("#hdnJasJava").val("1");
+                }
+            });
+            //-------------------------
+            $("#txtHtml, #hdnJasHtml").blur(function () {
+                var vals = $("#txtHtml").val();
+                if (isNaN(vals) || vals > 100 || vals == "") {
+                    $("#txtHtml").css({ "border": '2px solid red', "color": 'red' });
+                    $("#txtHtml").val("Incorrect Input - Check Again!");
+                    $("#hdnJasHtml").val("0");
+                }
+                else {
+                    $("#txtHtml").css({ "border": '2px solid green', "color": 'Green' });
+                    $("#hdnJasHtml").val("1");
+                }
+            });
+            //--------------------------------
+            $("#txtCss, #hdnJasCSS").blur(function () {
+                var vals = $("#txtCss").val();
+                if (isNaN(vals) || vals > 100 || vals == "") {
+                    $("#txtCss").css({ "border": '2px solid red', "color": 'red' });
+                    $("#txtCss").val("Incorrect Input - Check Again!");
+                    $("#hdnJasCSS").val("0");
+                }
+                else {
+                    $("#txtCss").css({ "border": '2px solid green', "color": 'Green' });
+                    $("#hdnJasCSS").val("1");
+                }
+            });
+            //----------------
+            $('#resets').click(function () 
+            {
+                location.reload();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="image">
+        <div class="title">REPORT CARD</div>
+        <form name="frm">
+            <p>
+                Enter Java Marks: <input type="text" id="txtJava" style="margin-left: 35px;"
+                    placeholder="Enter Your Java Marks here!">
+                <input type="hidden" id="hdnJasJava" value="0">
+            </p>
+            <p>
+                Enter HTML Marks: <input type="text" id="txtHtml" style="margin-left: 10px;"
+                    placeholder="Enter Your HTML Marks here!">
+                <input type="hidden" id="hdnJasHtml" value="0">
+            </p>
+            <p>
+                Enter CSS Marks: <input type="text" id="txtCss" style="margin-left: 44px;"
+                    placeholder="Enter Your CSS Marks here!">
+                <input type="hidden" id="hdnJasCSS" value="0">
+            </p>
+            <p>
+                <input type="button" value="Total" class="btn" id="1" style="margin-left:130px;">
+                <input type="button" value="Percentage" class="btn" id="2" disabled>
+                <input type="button" value="Result" class="btn" id="3" disabled>
+                <input type="reset" id="resets" class="btn"><br><br>
+            </p>
+            <div class="display">
+                <p>
+                    Total Marks: <input type="text" id="txtTotal" style="margin-left: 104px;" disabled><br>
+                    Percentage: <input type="text" id="txtPer" style="margin-left: 114px;" disabled><br>
+                    Result: <input type="text" id="txtResult" style="margin-left: 180px;" disabled><br>
+                </p>
+                <div class="star">
+                    <input type="text" name="txtGrade" id="q" disabled>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
