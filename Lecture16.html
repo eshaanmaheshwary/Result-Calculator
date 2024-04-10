@@ -1,0 +1,151 @@
+<html>
+
+<head>
+    <title>Electricity Bill Generator</title>
+    <link rel="stylesheet" href="Styles/Eb.css">
+</head>
+<script>
+    function doDisable() {
+        //alert();
+        document.getElementById("AC").disabled = true;
+        document.getElementById("COOLER").disabled = true;
+        document.getElementById("FAN").disabled = true;
+    }
+    function doEnable(val, ref) {
+        //alert();
+        if (val.checked) {
+            //alert();
+            ref.disabled = false;
+            ref.focus();
+        }
+        else
+            ref.disabled = true;
+        ref.value = "0";
+    }
+    function doBill(ub, ab, cb, fb) {
+        //alert();
+        var x = ub.value;
+        var UB = x * 5;
+        document.getElementById("txtUnitsB").value = "Rs. " + UB;
+        var y = ab.value;
+        var AB = y * 100;
+        document.getElementById("txtAc").value = "Rs. " + AB;
+        var z = cb.value;
+        var CB = z * 80;
+        document.getElementById("txtCooler").value = "Rs. " + CB;
+        var a = fb.value;
+        var FB = a * 60;
+        document.getElementById("txtFan").value = "Rs. " + FB;
+        TB = UB + AB + CB + FB;
+        document.getElementById("txtTotalB").value = "Rs. " + TB;
+    }
+    function doDiscount(CD, RD) {
+        //alert();
+        if (CD.checked == true) {
+            dis = (10 * TB) / 100;
+        }
+        else if (RD.checked == true) {
+            dis = (20 * TB) / 100;
+        }
+        else
+            dis = 0;
+        document.getElementById("txtDiscount").value = "Rs. " + dis;
+    }
+    function doNet() {
+        var net = TB - dis;
+        document.getElementById("txtNet").value = "Rs. " + net;
+    }
+</script>
+
+<body onload="doDisable()">
+    <div class="Parent">
+        <div class="heading"><b>ELECTRICITY BILL GENERATOR</b></div>
+        <div class="content">
+            <form>
+                <p id="A">
+                    Units Consumed:
+                    <input type="text" id="UNITS" autofocus>
+                </p>
+                <br>
+                <hr>
+                <br>
+                <div id="B">
+                    <div class="B1">
+                        <input type="checkbox" id="chkAc" value="2" onclick="doEnable(this,AC);"> Number of AC's:<br>
+                        <input type="text" id="AC">
+                    </div>
+                    <div class="B1">
+                        <input type="checkbox" id="chkCooler" value="3" onclick="doEnable(this,COOLER);"> Number of
+                        COOLER's:<br>
+                        <input type="text" id="COOLER">
+                    </div>
+                    <div class="B1">
+                        <input type="checkbox" value="4" id="chkFan" onclick="doEnable(this,FAN);"> Number of FAN's:<br>
+                        <input type="text" id="FAN">
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div id="C">
+                    <input type="radio" id="radComm" name="grp"> Commercial(10%)
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" id="radRes" name="grp"> Residential(20%)
+                </div>
+                <br>
+                <hr>
+                <div id="D">
+                    <input type="button" value="BILL" onclick="doBill(UNITS,AC,COOLER,FAN);" class="btn"
+                        style="margin-left:175px;">
+                    <input type="button" value="DISCOUNT" onclick="doDiscount(radComm,radRes);" class="btn">
+                    <input type="button" value="NET" onclick="doNet();" class="btn">
+                    <input type="reset" class="btn" onclick="doDisable();">
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div id="E">
+                    <div class="E1">
+                        AC BILL<br>
+                        <input type="text" id="txtAc" disabled>
+                    </div>
+                    <div class="E1">
+                        COOLER BILL<br>
+                        <input type="text" id="txtCooler" disabled>
+                    </div>
+                    <div class="E1">
+                        FAN BILL<br>
+                        <input type="text" id="txtFan" disabled>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div id="E">
+                    <div class="E1">
+                        UNITS BILL<br>
+                        <input type="text" id="txtUnitsB" disabled>
+                    </div>
+                    <div class="E1">
+                        TOTAL BILL<br>
+                        <input type="text" id="txtTotalB" disabled>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div id="E">
+                    <div class="E1">
+                        DISCOUNT<br>
+                        <input type="text" id="txtDiscount" disabled>
+                    </div>
+                    <div class="E1">
+                        NET BILL<br>
+                        <input type="text" id="txtNet" disabled>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
