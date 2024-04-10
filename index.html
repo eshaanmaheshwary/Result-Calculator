@@ -59,7 +59,7 @@
             //------------------------
             $("#txtJava, #hdnJasJava").blur(function () {
                 var vals = $("#txtJava").val();
-                if (isNaN(vals) || vals > 100 || vals == "") {
+                if (isNaN(vals) || vals > 100 || vals == "" || vals < 0 ) {
                     $("#txtJava").css({ "border": '2px solid red', "color": 'red' });
                     $("#txtJava").val("Incorrect Input - Check Again!");
                     $("#hdnJasJava").val("0");
@@ -72,7 +72,7 @@
             //-------------------------
             $("#txtHtml, #hdnJasHtml").blur(function () {
                 var vals = $("#txtHtml").val();
-                if (isNaN(vals) || vals > 100 || vals == "") {
+                if (isNaN(vals) || vals > 100 || vals == "" || vals < 0) {
                     $("#txtHtml").css({ "border": '2px solid red', "color": 'red' });
                     $("#txtHtml").val("Incorrect Input - Check Again!");
                     $("#hdnJasHtml").val("0");
@@ -85,7 +85,7 @@
             //--------------------------------
             $("#txtCss, #hdnJasCSS").blur(function () {
                 var vals = $("#txtCss").val();
-                if (isNaN(vals) || vals > 100 || vals == "") {
+                if (isNaN(vals) || vals > 100 || vals == "" || vals < 0) {
                     $("#txtCss").css({ "border": '2px solid red', "color": 'red' });
                     $("#txtCss").val("Incorrect Input - Check Again!");
                     $("#hdnJasCSS").val("0");
